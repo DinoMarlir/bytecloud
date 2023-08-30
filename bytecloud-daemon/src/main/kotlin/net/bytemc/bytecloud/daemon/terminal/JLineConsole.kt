@@ -1,5 +1,6 @@
 package net.bytemc.bytecloud.daemon.terminal
 
+import net.bytemc.bytecloud.daemon.logging.LogType
 import net.bytemc.bytecloud.daemon.terminal.process.JLineReadingProcess
 import net.bytemc.bytecloud.daemon.terminal.utils.Color
 import org.fusesource.jansi.AnsiConsole
@@ -9,9 +10,11 @@ import org.jline.reader.impl.LineReaderImpl
 import org.jline.terminal.Terminal
 import org.jline.terminal.TerminalBuilder
 import org.jline.utils.InfoCmp
+import java.text.SimpleDateFormat
 
 class JLineConsole : Console {
 
+    private var consoleFormat = SimpleDateFormat("HH:mm:ss")
     private var terminal: Terminal = TerminalBuilder.builder()
         .system(true)
         .dumb(true)
@@ -35,15 +38,24 @@ class JLineConsole : Console {
         this.process.start()
     }
 
-    override fun write(message: String) {
+    override fun write(type: LogType, output: String) {
         this.terminal.puts(InfoCmp.Capability.carriage_return)
-        this.terminal.writer().write(Color.translate(message))
+
+        if(type == LogType.EMPTY) {
+            this.terminal.writer().write(Color.translate(output))
+        }else{
+            this.terminal.writer().write(Color.translate("&1${consoleFormat.format(System.currentTimeMillis())} &3| &1${type.name} &3» &1$output"))
+        }
         this.terminal.writer().flush()
         this.update()
     }
 
     override fun prompt(): String {
         return this.prompt
+    }
+
+    override fun close() {
+        this.terminal.close()
     }
 
     fun updatePrompt(prompt: String) {

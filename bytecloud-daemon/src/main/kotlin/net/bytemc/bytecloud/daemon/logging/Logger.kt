@@ -8,11 +8,11 @@ object Logger {
     private var logProvider = LogFileProvider()
 
     fun info(message: String) {
-        printMessage(LogType.INFO, "[INFO] $message")
+        printMessage(LogType.INFO,  message)
     }
 
     private fun printMessage(logType: LogType, message: String) {
         logProvider.writeLine(message)
-        Daemon.getInstance().console.write(message + "\n")
+        Daemon.getInstance().console.write(logType, message + "\n")
     }
 }

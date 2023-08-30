@@ -1,6 +1,7 @@
 package net.bytemc.bytecloud.daemon.terminal
 
 import net.bytemc.bytecloud.daemon.Daemon
+import net.bytemc.bytecloud.daemon.logging.LogType
 import org.fusesource.jansi.Ansi
 
 object JLineConsoleHelper {
@@ -22,6 +23,6 @@ object JLineConsoleHelper {
     }
 
     private fun terminal(output: String) {
-        Daemon.getInstance().console.write(output);
+        Daemon.getInstance().console.write(LogType.EMPTY, output);
     }
 }

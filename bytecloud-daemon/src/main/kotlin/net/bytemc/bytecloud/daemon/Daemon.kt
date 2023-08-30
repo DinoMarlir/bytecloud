@@ -11,7 +11,7 @@ class Daemon {
     init {
         instance = this
 
-        Logger.info("polo ist toll")
+        Logger.info("Default test message with nothing output.")
 
     }
 
