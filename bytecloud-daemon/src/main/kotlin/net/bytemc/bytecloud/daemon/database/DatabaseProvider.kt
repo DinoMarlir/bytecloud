@@ -10,10 +10,14 @@ class DatabaseProvider {
     private val databases = listOf(H2Database())
 
     fun initialize(cradinates: DatabaseConnectionCradinates) {
+
+        Logger.info("Waiting for database connection...")
+
         val database = getDatabase(cradinates.databaseType)
         this.currentDatabase = database;
         database.connect(cradinates)
-        Logger.info("Connected to database ${database.getId()}")
+
+        Logger.success("Connected to database")
     }
 
     private fun getDatabase(id: String): Database {

@@ -13,8 +13,11 @@ import net.bytemc.bytecloud.daemon.services.CloudServiceProviderImpl
 import net.bytemc.bytecloud.daemon.shutdown.DaemonShutdownHandler
 import net.bytemc.bytecloud.daemon.terminal.Console
 import net.bytemc.bytecloud.daemon.terminal.JLineConsole
+import net.bytemc.bytecloud.daemon.terminal.JLineConsoleHelper
 
 class Daemon : CloudAPI() {
+
+    var running = true
 
     var commandProvider = CommandProvider()
     var console: Console = JLineConsole()
@@ -30,12 +33,13 @@ class Daemon : CloudAPI() {
     init {
         instance = this
 
+        Logger.info("Starting ByteCloud Daemon...")
+
         DaemonShutdownHandler.register()
 
         // load configuration
         this.configuration = DaemonConfiguration.load()
         this.databaseProvider.initialize(this.configuration!!.database)
-
     }
 
     companion object {

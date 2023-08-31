@@ -9,14 +9,19 @@ object DaemonShutdownHandler {
     fun register() {
         var thread = Thread { executeShutdown() }
         thread.isDaemon = false
+        thread.priority = 10
         thread.name = "bytecloud-daemon-shutdown"
         Runtime.getRuntime().addShutdownHook(thread)
     }
 
-    private fun executeShutdown() {
+    fun executeShutdown() {
+
+        if(!Daemon.getInstance().running) {
+            return
+        }
+        Daemon.getInstance().running = false
 
         Logger.info("Shutting down daemon...")
-
         Logger.info("Closing database connection...")
         Daemon.getInstance().databaseProvider.currentDatabase?.close()
         JLineConsoleHelper.updateLine(1, "Closed database connection")
@@ -26,5 +31,4 @@ object DaemonShutdownHandler {
         Logger.info("Succerssfully shutdown daemon")
         Thread.sleep(300)
     }
-
 }

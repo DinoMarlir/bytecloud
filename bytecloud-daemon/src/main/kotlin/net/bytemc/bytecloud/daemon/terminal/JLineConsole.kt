@@ -44,7 +44,7 @@ class JLineConsole : Console {
         if(type == LogType.EMPTY) {
             this.terminal.writer().write(Color.translate(output))
         }else{
-            this.terminal.writer().write(Color.translate("&1${consoleFormat.format(System.currentTimeMillis())} &3| &1${type.name} &3» &1$output"))
+            this.terminal.writer().write(Color.translate("&1${consoleFormat.format(System.currentTimeMillis())} &3| ${Color.valueOf(type.name).ansi + type.name} &3» &1$output"))
         }
         this.terminal.writer().flush()
         this.update()
