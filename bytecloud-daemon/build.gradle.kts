@@ -22,5 +22,6 @@ tasks.named("shadowJar", ShadowJar::class) {
 dependencies {
     implementation(project(":bytecloud-api"))
     implementation(libs.jline)
+    implementation(libs.h2)
     implementation(libs.jansi)
 }
