@@ -11,7 +11,6 @@ plugins {
 
 rootProject.name = "bytecloud"
 include("bytecloud-daemon")
-include("bytecloud-launcher")
 include("bytecloud-api")
 include("bytecloud-modules")
 include("bytecloud-updater")

@@ -1,9 +1,11 @@
 [versions]
 jline = "3.23.0"
 jansi = "2.4.0"
+gson = "2.10.1"
 
 [libraries]
 jline = { group = "org.jline", name = "jline", version.ref = "jline" }
 jansi = { group = "org.fusesource.jansi", name = "jansi", version.ref = "jansi" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 
 [plugins]
