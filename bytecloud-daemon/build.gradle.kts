@@ -24,4 +24,5 @@ dependencies {
     implementation(libs.jline)
     implementation(libs.h2)
     implementation(libs.jansi)
+    implementation(libs.netty)
 }

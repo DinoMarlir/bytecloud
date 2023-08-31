@@ -15,12 +15,17 @@ class H2Database : SqlDatabase() {
         Class.forName("org.h2.Driver")
     }
 
+    override fun getConnection(): Connection {
+        return this.connection!!
+    }
+
     override fun getId() : String {
         return "H2"
     }
 
     override fun connect(cradinates: DatabaseConnectionCradinates) {
-        this.connection = DriverManager.getConnection("jdbc:h2:" + this.h2DatabaseFile.toAbsolutePath());
+        this.connection = DriverManager.getConnection("jdbc:h2:" + this.h2DatabaseFile.toAbsolutePath())
+        this.createTable()
     }
 
     override fun close() {

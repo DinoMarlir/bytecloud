@@ -3,6 +3,9 @@ jline = "3.23.0"
 jansi = "2.4.0"
 gson = "2.10.1"
 
+# communication
+netty = "5.0.0.Alpha5"
+
 # datbase
 h2 = "2.2.220"
 
@@ -10,6 +13,9 @@ h2 = "2.2.220"
 jline = { group = "org.jline", name = "jline", version.ref = "jline" }
 jansi = { group = "org.fusesource.jansi", name = "jansi", version.ref = "jansi" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+
+# communication
+netty = { group = "io.netty", name = "netty5-all", version.ref = "netty" }
 
 # databse
 h2 = { group = "com.h2database", name = "h2", version.ref = "h2" }
