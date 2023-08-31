@@ -22,4 +22,9 @@ class H2Database : SqlDatabase() {
     override fun connect(cradinates: DatabaseConnectionCradinates) {
         this.connection = DriverManager.getConnection("jdbc:h2:" + this.h2DatabaseFile.toAbsolutePath());
     }
+
+    override fun close() {
+        this.connection?.close()
+    }
+
 }

@@ -1,18 +1,27 @@
 package net.bytemc.bytecloud.daemon
 
 import net.bytemc.bytecloud.api.CloudAPI
+import net.bytemc.bytecloud.api.groups.CloudGroupProvider
 import net.bytemc.bytecloud.api.node.Node
+import net.bytemc.bytecloud.api.services.CloudServiceProvider
+import net.bytemc.bytecloud.daemon.commands.CommandProvider
 import net.bytemc.bytecloud.daemon.config.DaemonConfiguration
 import net.bytemc.bytecloud.daemon.database.DatabaseProvider
+import net.bytemc.bytecloud.daemon.group.CloudGroupProviderImpl
 import net.bytemc.bytecloud.daemon.logging.Logger
+import net.bytemc.bytecloud.daemon.services.CloudServiceProviderImpl
 import net.bytemc.bytecloud.daemon.shutdown.DaemonShutdownHandler
 import net.bytemc.bytecloud.daemon.terminal.Console
 import net.bytemc.bytecloud.daemon.terminal.JLineConsole
 
 class Daemon : CloudAPI() {
 
+    var commandProvider = CommandProvider()
     var console: Console = JLineConsole()
-    private var databaseProvider = DatabaseProvider()
+    var databaseProvider = DatabaseProvider()
+
+    private var groupProvider = CloudGroupProviderImpl()
+    private var serviceProvider = CloudServiceProviderImpl()
 
     // main daemon configuration
     private var configuration: DaemonConfiguration? = null
@@ -21,7 +30,7 @@ class Daemon : CloudAPI() {
     init {
         instance = this
 
-        Runtime.getRuntime().addShutdownHook(Thread { DaemonShutdownHandler.executeShutdown() })
+        DaemonShutdownHandler.register()
 
         // load configuration
         this.configuration = DaemonConfiguration.load()
@@ -40,5 +49,13 @@ class Daemon : CloudAPI() {
 
     override fun getSelfNode(): Node {
         return this.configuration!!.selfNode
+    }
+
+    override fun getGroupProvider(): CloudGroupProvider {
+        return this.groupProvider
+    }
+
+    override fun getServiceProvider(): CloudServiceProvider {
+        return this.serviceProvider
     }
 }

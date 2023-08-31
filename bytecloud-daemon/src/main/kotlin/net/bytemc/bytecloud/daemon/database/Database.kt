@@ -8,4 +8,5 @@ interface Database {
 
     fun connect(cradinates: DatabaseConnectionCradinates)
 
+    fun close()
 }

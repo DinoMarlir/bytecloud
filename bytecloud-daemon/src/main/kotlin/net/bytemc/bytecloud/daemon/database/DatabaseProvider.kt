@@ -6,12 +6,13 @@ import net.bytemc.bytecloud.daemon.logging.Logger
 
 class DatabaseProvider {
 
+    var currentDatabase: Database? = null
     private val databases = listOf(H2Database())
 
     fun initialize(cradinates: DatabaseConnectionCradinates) {
         val database = getDatabase(cradinates.databaseType)
+        this.currentDatabase = database;
         database.connect(cradinates)
-
         Logger.info("Connected to database ${database.getId()}")
     }
 
