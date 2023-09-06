@@ -6,9 +6,14 @@ jansi = "2.4.0"
 # networking
 netty5 = "5.0.0.Alpha5"
 
+# configuration
+gson = "2.10.1"
+
 [libraries]
 jline = { group = "org.jline", name = "jline", version.ref = "jline" }
 jansi = { group = "org.fusesource.jansi", name = "jansi", version.ref = "jansi" }
+
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 
 # networking
 netty5 = { group = "io.netty", name = "netty5-all", version.ref = "netty5" }
