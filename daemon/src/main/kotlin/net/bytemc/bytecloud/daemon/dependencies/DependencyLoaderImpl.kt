@@ -23,7 +23,16 @@ class DependencyLoaderImpl : DependencyLoader {
 
         Dependency("org.jline", "jline", "3.20.0").download(this)
         Dependency("org.fusesource.jansi", "jansi", "2.4.0").download(this)
-        Dependency("io.netty", "netty5-all", "5.0.0.Alpha5").download(this)
+
+        // netty
+        Dependency("io.netty", "netty5-handler", "5.0.0.Alpha5").download(this)
+        Dependency("io.netty", "netty5-transport", "5.0.0.Alpha5").download(this)
+        Dependency("io.netty", "netty5-codec", "5.0.0.Alpha5").download(this)
+        Dependency("io.netty", "netty5-buffer", "5.0.0.Alpha5").download(this)
+        Dependency("io.netty", "netty5-common", "5.0.0.Alpha5").download(this)
+
+        Dependency("io.netty", "netty5-transport-classes-epoll", "5.0.0.Alpha5").download(this)
+        Dependency("io.netty", "netty5-transport-native-epoll", "5.0.0.Alpha5").download(this)
     }
 
     override fun getDependencies(): List<Dependency> {

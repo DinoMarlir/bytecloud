@@ -9,11 +9,16 @@ import java.net.URL
 import java.nio.file.Path
 import kotlin.io.path.Path
 
-class Dependency(var groupId: String, var artifactId: String, var version: String) {
+class Dependency(private var groupId: String, private var artifactId: String, private var version: String, private var classifier: String) {
+
+    constructor(groupId: String, artifactId: String, version: String) : this(groupId, artifactId, version, "")
 
     fun download(loader: DependencyLoader) {
         if(!exists()) {
-            val url = "https://repo.maven.apache.org/maven2/${groupId.replace('.', '/')}/$artifactId/$version/$artifactId-$version.jar"
+            val baseUrl = "https://repo.maven.apache.org/maven2/${groupId.replace('.', '/')}/$artifactId/$version/"
+            val classifierSuffix = if (classifier.isNotEmpty()) "-$classifier" else ""
+            val url = "$baseUrl$artifactId-$version$classifierSuffix.jar"
+
 
             println(url)
             try {
