@@ -12,6 +12,8 @@ repositories {
 
 dependencies {
     implementation(project(":api"))
+
+    api(libs.jline)
 }
 
 tasks.withType<Jar> {
