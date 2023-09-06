@@ -1,5 +1,8 @@
 [versions]
 
+jline = "3.20.0"
+
 [libraries]
+jline = { group = "org.jline", name = "jline", version.ref = "jline" }
 
 [plugins]
