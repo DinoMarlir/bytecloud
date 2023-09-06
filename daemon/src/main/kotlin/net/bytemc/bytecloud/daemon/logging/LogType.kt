@@ -1,7 +1,10 @@
 package net.bytemc.bytecloud.daemon.logging
 
-enum class LogType {
+enum class LogType(var id: Char) {
 
-    INFO, WARN, ERROR, EMPTY
+    INFO('f'), WARN('e'), ERROR('c'), EMPTY('7');
 
+    override fun toString(): String {
+        return "&$id" + this.name
+    }
 }

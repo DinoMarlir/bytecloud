@@ -1,7 +1,7 @@
 package net.bytemc.bytecloud.daemon.terminal
 
 import net.bytemc.bytecloud.daemon.logging.LogType
-import net.bytemc.bytecloud.daemon.terminal.completer.SystemPrintOutPutStream
+import net.bytemc.bytecloud.daemon.terminal.stream.SystemPrintOutPutStream
 import net.bytemc.bytecloud.daemon.terminal.utils.Color
 import org.fusesource.jansi.AnsiConsole
 import org.jline.reader.LineReader
@@ -41,7 +41,7 @@ class JLineTerminal {
         var coloredMessage = Color.translate(msg)
 
         if (logType != LogType.EMPTY) {
-            coloredMessage = Color.translate("&8[&712:32:33 &fINFO&8] &7") + coloredMessage;
+            coloredMessage = Color.translate("&8[&712:32:33 $logType&8] &7") + coloredMessage;
         } else {
             this.write(msg)
             return

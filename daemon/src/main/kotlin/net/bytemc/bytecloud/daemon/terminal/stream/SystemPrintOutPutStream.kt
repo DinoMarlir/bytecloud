@@ -1,4 +1,4 @@
-package net.bytemc.bytecloud.daemon.terminal.completer
+package net.bytemc.bytecloud.daemon.terminal.stream
 
 import net.bytemc.bytecloud.daemon.Daemon
 import net.bytemc.bytecloud.daemon.logging.LogType
