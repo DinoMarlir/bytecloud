@@ -15,6 +15,9 @@ class Daemon : CloudAPI() {
 
     init {
         instance = this
+
+        logger.info("Starting ByteCloud Daemon...")
+
     }
 
     companion object {

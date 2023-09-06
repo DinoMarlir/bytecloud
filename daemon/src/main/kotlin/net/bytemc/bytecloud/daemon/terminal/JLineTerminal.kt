@@ -35,12 +35,22 @@ class JLineTerminal {
 
         var coloredMessage = Color.translate(msg)
 
-        if(logType != LogType.EMPTY) {
-            //todo print at right layout [DATE, HOUR] [TYPE] MESSAGE
+        if (logType != LogType.EMPTY) {
+            coloredMessage = "[06.09 12:32:33] $coloredMessage";
+        } else {
+            this.write(msg)
+            return
         }
 
         this.reader.terminal.puts(InfoCmp.Capability.carriage_return)
-        this.reader.terminal.writer().write(coloredMessage)
+        this.reader.terminal.writer().println(coloredMessage)
+        this.reader.terminal.flush()
+        this.update()
+    }
+
+    fun write(msg: String) {
+        this.reader.terminal.puts(InfoCmp.Capability.carriage_return)
+        this.reader.terminal.writer().write(msg)
         this.reader.terminal.flush()
         this.update()
     }

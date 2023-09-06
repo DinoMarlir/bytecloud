@@ -23,7 +23,7 @@ object JLineConsoleHelper {
     }
 
     private fun terminal(output: String) {
-        Daemon.getInstance().terminal.print(output, LogType.EMPTY)
+        Daemon.getInstance().terminal.write(output)
     }
 
 }

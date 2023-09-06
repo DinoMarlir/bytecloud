@@ -1,5 +1,6 @@
 package net.bytemc.bytecloud.daemon.logging
 
+import net.bytemc.bytecloud.daemon.Daemon
 import java.io.File
 import java.nio.charset.StandardCharsets
 import java.util.logging.FileHandler
@@ -20,6 +21,11 @@ class LoggerProvider : Logger("DaemonLogger", null) {
         }
 
         addHandler(this.initializeFilerHandler())
+    }
+
+    override fun info(msg: String?) {
+        super.info(msg)
+        Daemon.getInstance().terminal.print(msg!!, LogType.INFO)
     }
 
     private fun initializeFilerHandler() : FileHandler {
