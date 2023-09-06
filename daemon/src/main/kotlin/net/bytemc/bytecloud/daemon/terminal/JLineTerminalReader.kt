@@ -6,7 +6,7 @@ import org.jline.reader.UserInterruptException
 
 class JLineTerminalReader(private var reader: LineReader) : Thread("terminal-reader") {
 
-    private var prompt = Color.translate("&fcloud &8» &7")
+    var prompt = Color.translate("&fcloud &8» &7")
 
     override fun run() {
         try {

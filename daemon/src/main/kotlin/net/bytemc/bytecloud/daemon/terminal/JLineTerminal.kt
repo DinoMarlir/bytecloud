@@ -6,6 +6,7 @@ import net.bytemc.bytecloud.daemon.terminal.utils.Color
 import org.fusesource.jansi.AnsiConsole
 import org.jline.reader.LineReader
 import org.jline.reader.LineReaderBuilder
+import org.jline.reader.impl.LineReaderImpl
 import org.jline.terminal.TerminalBuilder
 import org.jline.utils.InfoCmp
 
@@ -25,15 +26,18 @@ class JLineTerminal {
         .option(LineReader.Option.AUTO_REMOVE_SLASH, false)
         .build()
 
+    private lateinit var terminalReader: JLineTerminalReader
+
     init {
         AnsiConsole.systemInstall()
 
-        // overwrite system out after ansi install for convert system.out.print to special terminal print
+        // overwrite a system out after ansi installation for convert system.out.print to special terminal print
         System.setOut(SystemPrintOutPutStream())
 
         clear()
 
-        JLineTerminalReader(this.reader).start()
+        this.terminalReader = JLineTerminalReader(this.reader)
+        this.terminalReader.start()
     }
 
     fun print(msg: String, logType: LogType) {
@@ -57,6 +61,12 @@ class JLineTerminal {
         this.reader.terminal.puts(InfoCmp.Capability.carriage_return)
         this.reader.terminal.writer().write(msg)
         this.reader.terminal.flush()
+        this.update()
+    }
+
+    fun setPrompt(output: String) {
+        this.terminalReader.prompt = Color.translate(output)
+        (this.reader as LineReaderImpl).setPrompt(this.terminalReader.prompt)
         this.update()
     }
 
