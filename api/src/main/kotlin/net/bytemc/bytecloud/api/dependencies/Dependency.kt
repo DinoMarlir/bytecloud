@@ -10,6 +10,10 @@ import java.net.URL
 class Dependency(var groupId: String, var artifactId: String, var version: String) {
 
     fun download() {
+        if(!exists()) {
+            return
+        }
+
         val url = "https://repo.maven.apache.org/maven2/${groupId.replace('.', '/')}/$artifactId/$version/$artifactId-$version.jar"
 
         try {
@@ -31,8 +35,7 @@ class Dependency(var groupId: String, var artifactId: String, var version: Strin
         }
     }
 
-    fun exists() {
-
+    private fun exists() : Boolean {
+        return File("dependencies/$artifactId-$version.jar").exists()
     }
-
 }

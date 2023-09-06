@@ -14,9 +14,15 @@ class Daemon : CloudAPI() {
     private var dependencyLoader = DependencyLoaderImpl()
 
     init {
+        instance = this
+    }
 
-        logger.info("polo")
+    companion object {
+        private var instance: Daemon? = null
 
+        fun getInstance(): Daemon {
+            return instance!!
+        }
     }
 
     override fun getDependencyLoader(): DependencyLoader {

@@ -1,9 +1,12 @@
 package net.bytemc.bytecloud.daemon.terminal
 
+import net.bytemc.bytecloud.daemon.logging.LogType
+import net.bytemc.bytecloud.daemon.terminal.utils.Color
 import org.fusesource.jansi.AnsiConsole
 import org.jline.reader.LineReader
 import org.jline.reader.LineReaderBuilder
 import org.jline.terminal.TerminalBuilder
+import org.jline.utils.InfoCmp
 
 class JLineTerminal {
 
@@ -23,12 +26,35 @@ class JLineTerminal {
 
     init {
         AnsiConsole.systemInstall()
+        clear()
 
         JLineTerminalReader(this.reader).start()
     }
 
-    fun print() {
+    fun print(msg: String, logType: LogType) {
 
+        var coloredMessage = Color.translate(msg)
+
+        if(logType != LogType.EMPTY) {
+            //todo print at right layout [DATE, HOUR] [TYPE] MESSAGE
+        }
+
+        this.reader.terminal.puts(InfoCmp.Capability.carriage_return)
+        this.reader.terminal.writer().write(coloredMessage)
+        this.reader.terminal.flush()
+        this.update()
     }
 
+    fun clear() {
+        this.terminal.puts(InfoCmp.Capability.clear_screen)
+        this.terminal.flush()
+        this.update()
+    }
+
+    private fun update() {
+        if (this.reader.isReading) {
+            this.reader.callWidget(LineReader.REDRAW_LINE)
+            this.reader.callWidget(LineReader.REDISPLAY)
+        }
+    }
 }
