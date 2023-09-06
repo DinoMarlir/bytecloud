@@ -20,7 +20,7 @@ class DependencyLoaderImpl : DependencyLoader {
         }
 
         Dependency("org.jline", "jline", "3.20.0").download()
-
+        Dependency("org.fusesource.jansi", "jansi", "2.4.0").download()
     }
 
     override fun getDependencies(): List<Dependency> {

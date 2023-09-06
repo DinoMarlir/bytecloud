@@ -4,6 +4,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.net.HttpURLConnection
+import java.net.URI
 import java.net.URL
 
 class Dependency(var groupId: String, var artifactId: String, var version: String) {
@@ -12,7 +13,7 @@ class Dependency(var groupId: String, var artifactId: String, var version: Strin
         val url = "https://repo.maven.apache.org/maven2/${groupId.replace('.', '/')}/$artifactId/$version/$artifactId-$version.jar"
 
         try {
-            val connection = URL(url).openConnection() as HttpURLConnection
+            val connection = URI(url).toURL().openConnection() as HttpURLConnection
             connection.requestMethod = "GET"
             if (connection.responseCode == HttpURLConnection.HTTP_OK) {
                 val inputStream = connection.inputStream

@@ -14,6 +14,7 @@ dependencies {
     implementation(project(":api"))
 
     api(libs.jline)
+    api(libs.jansi)
 }
 
 tasks.withType<Jar> {
