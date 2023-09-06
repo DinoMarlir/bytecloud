@@ -12,9 +12,11 @@ repositories {
 
 dependencies {
     implementation(project(":api"))
+    compileOnly(project(":launcher"))
 
-    api(libs.jline)
-    api(libs.jansi)
+    compileOnly(libs.jline)
+    compileOnly(libs.jansi)
+    compileOnly(libs.netty5)
 }
 
 tasks.withType<Jar> {

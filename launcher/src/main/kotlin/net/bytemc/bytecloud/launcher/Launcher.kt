@@ -6,18 +6,6 @@ import java.nio.file.Path
 import java.nio.file.StandardCopyOption
 
 fun main(args: Array<String>) {
-
-    println("polo")
-
-    var classLoader = ClassLoader.getSystemClassLoader();
-
-    // copy file form launcher in storage
-    classLoader.getResourceAsStream("daemon.jar")?.let {
-        Files.copy(
-            it, Path.of("daemon.jar"), StandardCopyOption.REPLACE_EXISTING
-        )
-    }
-
     // main application class loader
     var mainClassLoader = LauncherUrlClassLoader(Path.of("daemon.jar").toUri().toURL())
 

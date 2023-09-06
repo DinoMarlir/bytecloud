@@ -8,16 +8,18 @@ import net.bytemc.bytecloud.daemon.terminal.JLineTerminal
 
 class Daemon : CloudAPI() {
 
-    var terminal = JLineTerminal()
-    var logger = LoggerProvider()
 
     private var dependencyLoader = DependencyLoaderImpl()
+
+    var terminal = JLineTerminal()
+    var logger = LoggerProvider()
 
     init {
         instance = this
 
         logger.info("Starting ByteCloud Daemon...")
 
+        println("polo trest")
     }
 
     companion object {

@@ -5,7 +5,7 @@ import java.net.URLClassLoader
 
 class LauncherUrlClassLoader(vararg urls: URL) : URLClassLoader(urls, ClassLoader.getSystemClassLoader()) {
 
-    override fun addURL(url: URL?) {
+    public override fun addURL(url: URL?) {
         super.addURL(url)
     }
 }
