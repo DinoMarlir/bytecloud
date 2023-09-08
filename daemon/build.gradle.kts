@@ -8,6 +8,7 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    maven("https://artifactory.bytemc.de/artifactory/bytemc-public/")
 }
 
 dependencies {
@@ -17,6 +18,7 @@ dependencies {
     compileOnly(libs.jline)
     compileOnly(libs.jansi)
     compileOnly(libs.netty5)
+    compileOnly(libs.evelon)
 }
 
 tasks.withType<Jar> {
