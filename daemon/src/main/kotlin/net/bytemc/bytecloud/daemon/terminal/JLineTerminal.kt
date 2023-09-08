@@ -26,7 +26,7 @@ class JLineTerminal {
         .option(LineReader.Option.AUTO_REMOVE_SLASH, false)
         .build()
 
-    private lateinit var terminalReader: JLineTerminalReader
+    private var terminalReader: JLineTerminalReader
 
     init {
         AnsiConsole.systemInstall()

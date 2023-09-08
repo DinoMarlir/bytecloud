@@ -2,18 +2,20 @@ package net.bytemc.bytecloud.daemon
 
 import net.bytemc.bytecloud.api.CloudAPI
 import net.bytemc.bytecloud.api.cluster.Node
+import net.bytemc.bytecloud.api.config.ConfigurationProvider
 import net.bytemc.bytecloud.api.dependencies.DependencyLoader
 import net.bytemc.bytecloud.daemon.cluster.LocalNode
+import net.bytemc.bytecloud.daemon.configuration.DaemonConfiguration
 import net.bytemc.bytecloud.daemon.dependencies.DependencyLoaderImpl
 import net.bytemc.bytecloud.daemon.logging.LoggerProvider
 import net.bytemc.bytecloud.daemon.terminal.JLineTerminal
 
-class Daemon : CloudAPI() {
+class Daemon(var configuration: DaemonConfiguration) : CloudAPI() {
 
 
-    private var dependencyLoader = DependencyLoaderImpl()
+    private var dependencyLoader = DependencyLoaderImpl(this.configuration.proxyConfiguration)
 
-    lateinit var selfNode : Node
+    var selfNode : Node
 
     var terminal = JLineTerminal()
     var logger = LoggerProvider()
@@ -23,6 +25,7 @@ class Daemon : CloudAPI() {
 
         logger.info("Starting ByteCloud Daemon...")
 
+        // todo load configuraiton
         selfNode = LocalNode()
     }
 

@@ -4,8 +4,7 @@ import java.nio.file.Path
 
 interface DependencyLoader {
 
-    // todo
-    // fun load(dependency: Dependency)
+    fun load(dependency: Dependency)
 
     fun getDependencies(): List<Dependency>
 
