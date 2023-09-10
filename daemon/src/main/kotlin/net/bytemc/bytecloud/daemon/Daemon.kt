@@ -8,6 +8,7 @@ import net.bytemc.bytecloud.daemon.cluster.LocalNode
 import net.bytemc.bytecloud.daemon.configuration.DaemonConfiguration
 import net.bytemc.bytecloud.daemon.dependencies.DependencyLoaderImpl
 import net.bytemc.bytecloud.daemon.logging.LoggerProvider
+import net.bytemc.bytecloud.daemon.shutdown.DaemonShutdownHandler
 import net.bytemc.bytecloud.daemon.terminal.JLineTerminal
 
 class Daemon(var configuration: DaemonConfiguration) : CloudAPI() {
@@ -27,6 +28,8 @@ class Daemon(var configuration: DaemonConfiguration) : CloudAPI() {
 
         // todo load configuraiton
         selfNode = LocalNode()
+
+        DaemonShutdownHandler.register()
     }
 
     companion object {
