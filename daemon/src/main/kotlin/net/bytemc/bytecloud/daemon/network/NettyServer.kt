@@ -29,4 +29,9 @@ class NettyServer {
                 Daemon.getInstance().logger.info("Netty server started")
             }
     }
+
+    fun close() {
+
+    }
+
 }

@@ -11,4 +11,7 @@ class LocalNode : Node {
         server = NettyServer()
     }
 
+    override fun close() {
+        //todo
+    }
 }

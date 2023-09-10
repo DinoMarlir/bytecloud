@@ -6,13 +6,15 @@ import net.bytemc.bytecloud.api.config.ConfigurationProvider
 import net.bytemc.bytecloud.api.dependencies.DependencyLoader
 import net.bytemc.bytecloud.daemon.cluster.LocalNode
 import net.bytemc.bytecloud.daemon.configuration.DaemonConfiguration
+import net.bytemc.bytecloud.daemon.database.DatabaseEvelonController
 import net.bytemc.bytecloud.daemon.dependencies.DependencyLoaderImpl
 import net.bytemc.bytecloud.daemon.logging.LoggerProvider
 import net.bytemc.bytecloud.daemon.shutdown.DaemonShutdownHandler
 import net.bytemc.bytecloud.daemon.terminal.JLineTerminal
+import net.bytemc.evelon.StorageHandler
+import java.io.File
 
-class Daemon(var configuration: DaemonConfiguration) : CloudAPI() {
-
+class Daemon(private var configuration: DaemonConfiguration) : CloudAPI() {
 
     private var dependencyLoader = DependencyLoaderImpl(this.configuration.proxyConfiguration)
 
@@ -20,6 +22,7 @@ class Daemon(var configuration: DaemonConfiguration) : CloudAPI() {
 
     var terminal = JLineTerminal()
     var logger = LoggerProvider()
+    var storageHandle = StorageHandler()
 
     init {
         instance = this
@@ -28,6 +31,9 @@ class Daemon(var configuration: DaemonConfiguration) : CloudAPI() {
 
         // todo load configuraiton
         selfNode = LocalNode()
+
+        // load database
+        DatabaseEvelonController(this.configuration.databaseConfiguration)
 
         DaemonShutdownHandler.register()
     }

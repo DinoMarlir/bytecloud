@@ -12,6 +12,7 @@ import kotlin.io.path.Path
 class Dependency(private var groupId: String, var artifactId: String, var version: String) {
 
     private var repository = "https://repo.maven.apache.org/maven2/"
+    var classifier = ""
 
     constructor(groupId: String, artifactId: String, version: String, repo: String) : this(
         groupId,
@@ -19,6 +20,15 @@ class Dependency(private var groupId: String, var artifactId: String, var versio
         version,
     ) {
         repository = repo;
+    }
+
+    constructor(groupId: String, artifactId: String, version: String, classifier: String, repo: String) : this(
+        groupId,
+        artifactId,
+        version,
+    ) {
+        this.repository = repo
+        this.classifier = classifier
     }
 
     fun exists(): Boolean {
@@ -30,7 +40,7 @@ class Dependency(private var groupId: String, var artifactId: String, var versio
     }
 
     fun fileName(): String {
-        return "$artifactId-$version.jar"
+        return "$artifactId-$version$classifier.jar"
     }
 
 }

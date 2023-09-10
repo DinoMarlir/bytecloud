@@ -34,7 +34,16 @@ class DependencyLoaderImpl(private var configuration: ProxyConfiguration) : Depe
         this.load(Dependency("io.netty", "netty5-common", "5.0.0.Alpha5"))
         this.load(Dependency("io.netty", "netty5-transport-classes-epoll", "5.0.0.Alpha5"))
         this.load(Dependency("io.netty", "netty5-transport-native-epoll", "5.0.0.Alpha5"))
-        this.load(Dependency("net.bytemc", "evelon", "1.2.0-SNAPSHOT", "https://artifactory.bytemc.de/artifactory/bytemc-public/"))
+
+        this.load(
+            Dependency(
+                "net.bytemc",
+                "evelon",
+                "1.2.2-SNAPSHOT",
+                "-shaded",
+                "https://artifactory.bytemc.de/artifactory/bytemc-public/"
+            )
+        )
     }
 
     override fun load(dependency: Dependency) {
@@ -49,7 +58,7 @@ class DependencyLoaderImpl(private var configuration: ProxyConfiguration) : Depe
 
     private fun download(dependency: Dependency) {
         if (!dependency.exists()) {
-            val url = "$dependency${dependency.artifactId}-${dependency.version}.jar"
+            val url = "$dependency${dependency.artifactId}-${dependency.version}${dependency.classifier}.jar"
             try {
                 val connection = ProxyConnection.proxyConnection(url, configuration)
                 if (connection.responseCode == HttpURLConnection.HTTP_OK) {
