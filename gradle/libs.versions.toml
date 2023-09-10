@@ -19,7 +19,6 @@ jansi = { group = "org.fusesource.jansi", name = "jansi", version.ref = "jansi" 
 
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 
-hikariCP = { group = "net.bytemc", name = "HikariCP", version.ref = "hikari" }
 evelon = { group = "net.bytemc", name = "evelon", version.ref = "evelon"}
 
 # networking
