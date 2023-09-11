@@ -9,27 +9,7 @@ import java.net.URL
 import java.nio.file.Path
 import kotlin.io.path.Path
 
-class Dependency(private var groupId: String, var artifactId: String, var version: String) {
-
-    private var repository = "https://repo.maven.apache.org/maven2/"
-    private var classifier = ""
-
-    constructor(groupId: String, artifactId: String, version: String, repo: String) : this(
-        groupId,
-        artifactId,
-        version,
-    ) {
-        repository = repo;
-    }
-
-    constructor(groupId: String, artifactId: String, version: String, classifier: String, repo: String) : this(
-        groupId,
-        artifactId,
-        version,
-    ) {
-        this.repository = repo
-        this.classifier = classifier
-    }
+class Dependency(private var groupId: String, var artifactId: String, var version: String, val classifier: String = "", val repository: String = "https://repo.maven.apache.org/maven2/") {
 
     fun exists(): Boolean {
         return File("dependencies/$artifactId-$version.jar").exists()
