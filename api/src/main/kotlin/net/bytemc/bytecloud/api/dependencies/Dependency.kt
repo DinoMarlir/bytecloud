@@ -9,7 +9,7 @@ import java.net.URL
 import java.nio.file.Path
 import kotlin.io.path.Path
 
-class Dependency(private var groupId: String, var artifactId: String, var version: String, val classifier: String = "", val repository: String = "https://repo.maven.apache.org/maven2/") {
+class Dependency(private var groupId: String, var artifactId: String, var version: String, private val classifier: String = "", val repository: String = "https://repo.maven.apache.org/maven2/") {
 
     fun exists(): Boolean {
         return File("dependencies/$artifactId-$version.jar").exists()
