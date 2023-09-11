@@ -8,6 +8,7 @@ netty5 = "5.0.0.Alpha5"
 
 # configuration
 gson = "2.10.1"
+kotlinxserialization = "1.6.0"
 
 # todo update evelon after stable version, but we need h2
 evelon = "1.2.1-SNAPSHOT"
@@ -18,6 +19,7 @@ jline = { group = "org.jline", name = "jline", version.ref = "jline" }
 jansi = { group = "org.fusesource.jansi", name = "jansi", version.ref = "jansi" }
 
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+kotlinxserialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxserialization" }
 
 evelon = { group = "net.bytemc", name = "evelon", version.ref = "evelon"}
 

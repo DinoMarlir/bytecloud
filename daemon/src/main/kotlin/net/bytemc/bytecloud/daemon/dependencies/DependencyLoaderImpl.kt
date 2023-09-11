@@ -27,7 +27,7 @@ class DependencyLoaderImpl(private var configuration: ProxyConfiguration) : Depe
 
         this.load(Dependency("org.jline", "jline", "3.20.0"))
         this.load(Dependency("org.fusesource.jansi", "jansi", "2.4.0"))
-
+        this.load(Dependency("org.jetbrains.kotlinx", "kotlinx-serialization-json", "1.6.0"))
 
 
         this.load(Dependency("io.netty", "netty5-common", "5.0.0.Alpha5"))
