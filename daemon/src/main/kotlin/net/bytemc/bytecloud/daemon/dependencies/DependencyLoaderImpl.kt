@@ -4,6 +4,7 @@ import net.bytemc.bytecloud.api.dependencies.Dependency
 import net.bytemc.bytecloud.api.dependencies.DependencyLoader
 import net.bytemc.bytecloud.daemon.configuration.impl.ProxyConfiguration
 import net.bytemc.bytecloud.daemon.misc.ProxyConnection
+import net.bytemc.bytecloud.daemon.terminal.utils.Color
 import net.bytemc.bytecloud.launcher.loader.LauncherUrlClassLoader
 import java.io.File
 import java.io.FileOutputStream
@@ -53,6 +54,7 @@ class DependencyLoaderImpl(private var configuration: ProxyConfiguration) : Depe
     }
 
     override fun load(dependency: Dependency) {
+        println("Loading dependency $dependency")
         this.download(dependency)
         this.addToClassPath(Path("dependencies/${dependency.fileName()}"))
     }
@@ -63,6 +65,9 @@ class DependencyLoaderImpl(private var configuration: ProxyConfiguration) : Depe
 
 
     private fun download(dependency: Dependency) {
+        if (File(dependencyFolder.toFile(), dependency.fileName()).exists()) return
+
+        println("Downloading dependency $dependency")
         if (!dependency.exists()) {
             val url = "$dependency${dependency.artifactId}-${dependency.version}${dependency.getClassifier()}.jar"
             try {
