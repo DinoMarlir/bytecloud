@@ -1,3 +1,5 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     kotlin("jvm") version "1.9.0"
     id("com.github.johnrengelman.shadow") version "8.1.1"
@@ -19,6 +21,10 @@ dependencies {
     compileOnly(libs.jansi)
     compileOnly(libs.netty5)
     compileOnly(libs.evelon)
+}
+
+tasks.withType(ShadowJar::class.java) {
+    mergeServiceFiles()
 }
 
 tasks.withType<Jar> {

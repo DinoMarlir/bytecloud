@@ -11,10 +11,11 @@ object DaemonShutdownHandler {
 
             //todo delete temp folder
 
+            System.out.println("polo shutdown")
+
             Daemon.getInstance().selfNode.close()
 
-
+            Daemon.getInstance().terminal.close()
         })
     }
-
 }

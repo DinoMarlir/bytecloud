@@ -8,4 +8,12 @@ class NettyServerHandler : SimpleChannelInboundHandler<Any>() {
     override fun messageReceived(ctx: ChannelHandlerContext?, msg: Any?) {
         TODO("Not yet implemented")
     }
+
+    override fun channelActive(ctx: ChannelHandlerContext?) {
+
+    }
+
+    override fun channelInactive(ctx: ChannelHandlerContext?) {
+
+    }
 }

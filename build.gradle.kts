@@ -15,11 +15,11 @@ dependencies {
 
 subprojects {
     tasks.withType<JavaCompile>().configureEach {
-        sourceCompatibility = JavaVersion.VERSION_20.toString()
-        targetCompatibility = JavaVersion.VERSION_20.toString()
+        sourceCompatibility = JavaVersion.VERSION_17.toString()
+        targetCompatibility = JavaVersion.VERSION_17.toString()
     }
 }
 
 kotlin {
-    jvmToolchain(20)
+    jvmToolchain(17)
 }

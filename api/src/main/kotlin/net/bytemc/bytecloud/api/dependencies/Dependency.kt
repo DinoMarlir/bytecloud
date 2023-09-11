@@ -12,7 +12,7 @@ import kotlin.io.path.Path
 class Dependency(private var groupId: String, var artifactId: String, var version: String) {
 
     private var repository = "https://repo.maven.apache.org/maven2/"
-    var classifier = ""
+    private var classifier = ""
 
     constructor(groupId: String, artifactId: String, version: String, repo: String) : this(
         groupId,
@@ -40,7 +40,11 @@ class Dependency(private var groupId: String, var artifactId: String, var versio
     }
 
     fun fileName(): String {
-        return "$artifactId-$version$classifier.jar"
+        return "$artifactId-$version${getClassifier()}.jar"
+    }
+
+    fun getClassifier() : String {
+        return if(classifier.isEmpty()) "" else "-$classifier"
     }
 
 }

@@ -5,13 +5,9 @@ import net.bytemc.bytecloud.daemon.network.NettyServer
 
 class LocalNode : Node {
 
-    private var server: NettyServer? = null
-
-    init {
-        server = NettyServer()
-    }
+    private var server: NettyServer = NettyServer()
 
     override fun close() {
-        //todo
+        this.server.close()
     }
 }

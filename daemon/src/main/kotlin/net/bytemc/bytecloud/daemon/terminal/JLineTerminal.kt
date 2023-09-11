@@ -82,4 +82,8 @@ class JLineTerminal {
             this.reader.callWidget(LineReader.REDISPLAY)
         }
     }
+
+    fun close() {
+        this.terminal.close()
+    }
 }

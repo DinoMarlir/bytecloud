@@ -27,20 +27,26 @@ class DependencyLoaderImpl(private var configuration: ProxyConfiguration) : Depe
 
         this.load(Dependency("org.jline", "jline", "3.20.0"))
         this.load(Dependency("org.fusesource.jansi", "jansi", "2.4.0"))
-        this.load(Dependency("io.netty", "netty5-handler", "5.0.0.Alpha5"))
-        this.load(Dependency("io.netty", "netty5-transport", "5.0.0.Alpha5"))
+
+
+
+        this.load(Dependency("io.netty", "netty5-common", "5.0.0.Alpha5"))
         this.load(Dependency("io.netty", "netty5-codec", "5.0.0.Alpha5"))
         this.load(Dependency("io.netty", "netty5-buffer", "5.0.0.Alpha5"))
-        this.load(Dependency("io.netty", "netty5-common", "5.0.0.Alpha5"))
+        this.load(Dependency("io.netty", "netty5-resolver", "5.0.0.Alpha5"))
+        this.load(Dependency("io.netty", "netty5-transport", "5.0.0.Alpha5"))
+
         this.load(Dependency("io.netty", "netty5-transport-classes-epoll", "5.0.0.Alpha5"))
-        this.load(Dependency("io.netty", "netty5-transport-native-epoll", "5.0.0.Alpha5"))
+        this.load(Dependency("io.netty", "netty5-transport-native-epoll", "5.0.0.Alpha5",  "linux-x86_64", "https://repo.maven.apache.org/maven2/"))
+        this.load(Dependency("io.netty", "netty5-transport-native-epoll", "5.0.0.Alpha5", "linux-aarch_64", "https://repo.maven.apache.org/maven2/"))
+        this.load(Dependency("io.netty", "netty5-transport-native-unix-common", "5.0.0.Alpha5"))
 
         this.load(
             Dependency(
                 "net.bytemc",
                 "evelon",
                 "1.2.2-SNAPSHOT",
-                "-shaded",
+                "shaded",
                 "https://artifactory.bytemc.de/artifactory/bytemc-public/"
             )
         )
@@ -58,7 +64,7 @@ class DependencyLoaderImpl(private var configuration: ProxyConfiguration) : Depe
 
     private fun download(dependency: Dependency) {
         if (!dependency.exists()) {
-            val url = "$dependency${dependency.artifactId}-${dependency.version}${dependency.classifier}.jar"
+            val url = "$dependency${dependency.artifactId}-${dependency.version}${dependency.getClassifier()}.jar"
             try {
                 val connection = ProxyConnection.proxyConnection(url, configuration)
                 if (connection.responseCode == HttpURLConnection.HTTP_OK) {
