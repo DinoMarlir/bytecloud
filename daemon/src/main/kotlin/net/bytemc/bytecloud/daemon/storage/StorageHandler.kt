@@ -4,12 +4,10 @@ import java.io.File
 
 class StorageHandler {
 
-    private val filePath = File("storage")
+    private val filePath = run {
+        val file = File("storage")
 
-    init {
-        if(!filePath.exists()) {
-            filePath.mkdirs()
-        }
+        if (!file.exists()) file.mkdirs()
+        file
     }
-
 }
