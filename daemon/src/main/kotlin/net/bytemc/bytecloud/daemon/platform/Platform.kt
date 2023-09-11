@@ -2,6 +2,7 @@ package net.bytemc.bytecloud.daemon.platform
 
 import net.bytemc.bytecloud.daemon.platform.enums.AddonType
 import net.bytemc.bytecloud.daemon.platform.enums.PlatformType
+import java.io.File
 
 class Platform(
     val name: String,
@@ -9,7 +10,8 @@ class Platform(
     val addonType: AddonType,
     val addonFolder: String = addonType.addonFolder,
 
-    val getMcVersions: () ->  List<String>,
-    val getBuilds: () ->  List<String>,
-    val downloadJarFile: () ->  List<String>
+    val jarNamePattern: String? = null,
+    val getMcVersions: () -> List<String>,
+    val getBuilds: () -> List<String>,
+    val getJarFile: () -> File
 )
