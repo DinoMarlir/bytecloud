@@ -8,7 +8,7 @@ import java.net.*
 object ProxyConnection {
 
     fun proxyConnection(url: String, configuration: ProxyConfiguration): HttpURLConnection {
-        var url = URI(url).toURL();
+        val url = URI(url).toURL();
 
         var connection: URLConnection
         if (configuration.use) {

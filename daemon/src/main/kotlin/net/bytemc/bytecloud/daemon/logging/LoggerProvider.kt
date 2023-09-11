@@ -10,7 +10,7 @@ import java.util.logging.SimpleFormatter
 
 class LoggerProvider : Logger("DaemonLogger", null) {
 
-    private var logDirectory = File("logs/")
+    private val logDirectory = File("logs/")
 
     init {
         level = Level.ALL

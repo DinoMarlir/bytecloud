@@ -18,8 +18,8 @@ import kotlin.io.path.Path
 
 class DependencyLoaderImpl(private var configuration: ProxyConfiguration) : DependencyLoader {
 
-    private var dependencyFolder = Path("dependencies")
-    private var loadedDependencies = ArrayList<Dependency>()
+    private val dependencyFolder = Path("dependencies")
+    private val loadedDependencies = ArrayList<Dependency>()
 
     init {
         if (!Files.exists(dependencyFolder)) {
