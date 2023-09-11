@@ -27,13 +27,12 @@ class Daemon(private var configuration: DaemonConfiguration) : CloudAPI() {
 
         logger.info("Starting ByteCloud Daemon...")
 
-        // todo load configuraiton
-        selfNode = LocalNode()
-
         // load database
         DatabaseEvelonController(this.configuration.databaseConfiguration)
 
         DaemonShutdownHandler.register()
+
+        selfNode = LocalNode()
     }
 
     companion object {

@@ -23,10 +23,6 @@ dependencies {
     compileOnly(libs.evelon)
 }
 
-tasks.withType(ShadowJar::class.java) {
-    mergeServiceFiles()
-}
-
 tasks.withType<Jar> {
     archiveFileName.set("daemon.jar")
 }
